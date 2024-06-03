@@ -1,0 +1,556 @@
+.home-title {
+    position: relative;
+    top: 100px;
+}
+
+
+.myLinac-title {
+    position: relative;
+    top: 100px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: rgb(200, 200, 200);
+    background-color: rgb(25, 25, 25);
+}
+
+header {
+    background-color: rgb(30, 30, 30);
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    border-bottom: 0.5px solid rgb(100,100,100); /* Add bottom border */
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    z-index: 1800; /* Ensure the header is above other elements */
+}
+
+    header .logo img {
+        height: 40px; /* Adjust the height as needed */
+        width: auto;
+        position: absolute;
+        left: 20px;
+        top: 15px;
+    }
+
+    header nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+            header nav ul li a {
+                color: rgb(200, 200, 200);
+                text-decoration: none;
+            }
+
+main {
+    padding: 20px;
+}
+
+.menu-bar {
+    margin-top: 70px;
+    margin-bottom: 0px;
+    text-align: center;
+    padding-bottom: -30px;
+}
+
+    .menu-bar button {
+        background-color: rgb(25,25,25);
+        color: rgb(200, 200, 200);
+        border: none;
+        padding: 7px 7px;
+        margin: 0px 5px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Add transition for background color */
+        border-radius: 5px; /* Add rounded corners */
+    }
+
+        .menu-bar button:hover {
+            background-color: rgb(100, 100, 100);
+        }
+
+        .menu-bar button.active {
+            background-color: #fff;
+            color: #000;
+        }
+
+.content-section {
+    position: relative;
+    margin-top: 20px;
+    background-color: rgb(30,30,30);
+    height: 1200px;
+    width: 1262px;
+    border-radius: 30px;
+    padding-top: 5px; /* Add padding to ensure content is not too close to the edges */
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+}
+
+.section-title {
+    margin-left: 20px; /* Move the title to the right */
+}
+
+.upload-area {
+    border: 1.5px dashed rgb(100,100,100);
+    padding: 20px;
+    position: relative;
+    width: 500px;
+    height: 220px;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    background-color: rgb(40,40,40);
+    opacity: 0.8;
+    transition: background-color 0.5s; /* Smooth transition for background color */
+    z-index: 970;
+}
+
+    .upload-area:hover {
+        background-color: rgb(50,50,50); /* Change background color on hover */
+        opacity: 0.8;
+    }
+
+    .upload-area p {
+        margin: 0;
+        font-size: 16px;
+        color: #ccc;
+        z-index: 980;
+    }
+
+.uploadlogo {
+    position: absolute;
+    top: 73px;
+    align-content: center;
+}
+
+.uploadlogo img {
+    max-width: 40px;
+}
+
+.upload-text {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+    .upload-text:hover {
+        color: #0056b3;
+    }
+
+#supp-text {
+    position: absolute;
+    top: 145px;
+    left: 180px;
+    color: rgb(100,100,100); /* Text color */
+    font-size: 13px; /* Font size */
+    margin-top: 5px; /* Space above the text */
+    text-align: center; /* Center the text */
+}
+
+/* Hide spinners for number inputs in webkit browsers (Chrome, Safari) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinners for number inputs in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+.input-group {
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: rgb(200, 200, 200); /* Adjust label color */
+    }
+
+    .input-group input[type="number"] {
+        width: 50px; /* Change this value to set your desired width */
+        padding: 8px;
+        background-color: rgb(50, 50, 50); /* Change fill color */
+        color: rgb(200, 200, 200); /* Text color */
+        border: 1px solid rgb(100, 100, 100); /* Border color */
+        border-radius: 5px;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+
+    .input-group select {
+        width: 50px;
+        padding: 8px;
+        background-color: rgb(50, 50, 50); /* Change background color */
+        color: rgb(200, 200, 200); /* Text color */
+        border: 1px solid rgb(100, 100, 100); /* Border color */
+        border-radius: 5px;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        -webkit-appearance: none; /* Remove default styling for better control */
+        -moz-appearance: none; /* Remove default styling for better control */
+        appearance: none; /* Remove default styling for better control */
+    }
+
+        .input-group select:focus {
+            outline: none;
+            border-color: rgb(100, 100, 100); /* Border color on focus */
+        }
+
+        .input-group select option {
+            background-color: rgb(50, 50, 50); /* Change background color for dropdown options */
+            color: rgb(200, 200, 200); /* Text color for dropdown options */
+        }
+
+#bbsize-text {
+    position: absolute;
+    font-size: 14px;
+    left: 30px;
+    top: 420px;
+}
+
+#BB_size {
+    position:absolute;
+    left: 100px;
+    top: -8px;
+    height: 30px;
+}
+
+
+#lowdensity-text {
+    position: absolute;
+    font-size: 14px;
+    left: 250px;
+    top: 420px;
+}
+
+    #lowdensity {
+        position: absolute;
+        top: -7px;
+        left: 113px;
+        height: 30px;
+    }
+
+
+#tolerance-text {
+    position: absolute;
+    font-size: 14px;
+    left: 480px;
+    top: 420px;
+}
+
+    #tolerance {
+        position: absolute;
+        top: -7px;
+        left: 113px;
+        height: 30px;
+    }
+
+.no-transition {
+    transition: none !important;
+}
+
+.perform-analysis-button {
+    position: relative;
+    top: -255px;
+    left: 1050px;
+    background-color: rgb(70, 130, 180); /* Change this to your desired fill color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden; /* To contain the progress fill */
+}
+
+    .perform-analysis-button .progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: green; /* Progress bar color */
+        width: 0; /* Initial width */
+        transition: width 1s linear; /* Smooth transition */
+        z-index: 1012; /* Ensure it's behind the text */
+    }
+
+    .perform-analysis-button .button-text {
+        position: relative;
+        z-index: 1012; /* Ensure it's above the progress bar */
+    }
+
+
+    .perform-analysis-button:hover {
+        background-color: rgb(100, 149, 237); /* Change this to your desired hover color */
+        transition: background-color 0.3s;
+    }
+
+    .perform-analysis-button:active {
+        background-color: rgb(70, 130, 180); /* Color when clicked */
+        transition: none;
+    }
+
+.bb-density-button {
+    background-color: rgb(100,100,100);
+}
+
+/* General styles for the lock button */
+
+.lock-button {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Adjust margin as needed */
+    position: relative;
+    top: -340px;
+    left: 675px;
+}
+
+    .lock-button:focus {
+        outline: none;
+    }
+
+    .lock-button.locked {
+        background-color: rgb(30, 30, 30);
+    }
+
+    .lock-button.unlocked {
+        background-color: rgb(30, 30, 30);
+    }
+
+    .lock-button:hover {
+        background-color: rgb(100,100,100);
+    }
+
+/* Styles for the results table */
+#results table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    position: absolute;
+    top: 560px;
+    left: 40px;
+}
+
+#results th, #results td {
+    border: 2px solid rgb(30,30,30);
+    padding: 8px;
+    text-align: left;
+    color: rgb(200, 200, 200);
+}
+
+/* Adjust column widths */
+#results colgroup col.parameter {
+    width: 250px; /* Adjust this value to set the desired width for the parameter column */
+}
+
+#results colgroup col.value {
+    width: 100px; /* Adjust this value to set the desired width for the value column */
+}
+
+#results th {
+    background-color: rgb(50, 50, 50);
+    height: 35px;
+}
+
+/* Alternate row shading */
+#results tr:nth-child(odd) {
+    background-color: rgb(40, 40, 40);
+}
+
+#results tr:nth-child(even) {
+    background-color: rgb(50, 50, 50);
+}
+
+/* Style for the selected image */
+#selected-image {
+    margin-top: 20px; /* Adjust as needed */
+    text-align: center; /* Center the image horizontally */
+    position: absolute;
+    max-width: 500px;
+    top: 130px;
+    left: 280px;
+}
+
+/* Style for the image title */
+.image-title {
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(200,200,200); /* Adjust as needed */
+    position: absolute;
+    top: -40px;
+    left: 200px;
+}
+
+    #selected-image img {
+        border-radius: 10px;
+        max-width: 500px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out; /* Transition for fade-in effect */
+    }
+
+/* State when the image is loaded and visible */
+#selected-image img.fade-in {
+    opacity: 1;
+}
+
+/* Style for the clickable image links */
+.image-link {
+    color: #1e90ff; /* Change this to your desired color */
+    text-decoration: none; /* Remove underline */
+}
+
+    .image-link:hover {
+        color: #104e8b; /* Change this to your desired hover color */
+        text-decoration: underline; /* Add underline on hover */
+    }
+
+#file-list-container {
+    background-color: rgb(30,30,30);
+    position: relative;
+    top: -262.5px;
+    left: 600px;
+    width: 600px; /* Adjust the width as needed */
+    height: 260px; /* Adjust the height as needed */
+    overflow-x: hidden;
+    overflow-y: auto; /* Enable horizontal scroll only */
+    white-space: nowrap; /* Prevent line breaks within the list */
+    border-radius: 10px;
+    border: 3px solid rgb(70,70,70);
+}
+
+#file-list {
+    z-index: 1000;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 50px;
+}
+
+/* Style the scrollbar */
+#file-list-container::-webkit-scrollbar {
+    position: relative;
+    left: 3px;
+    width: 12px; /* Adjust the width as needed */
+    height: 12px; /* Adjust the height as needed for horizontal scroll */
+}
+
+/* Style the track (background) */
+#file-list-container::-webkit-scrollbar-track {
+    background: rgb(30, 30, 30); /* Change to your desired track background color */
+    border-radius: 10px;
+}
+
+/* Style the thumb (scroll bar) */
+#file-list-container::-webkit-scrollbar-thumb {
+    background-color: rgb(20, 20, 20); /* Change to your desired scroll bar color */
+    border-radius: 10px; /* Add rounded corners to the scroll bar */
+}
+
+
+.file-item {
+    font-size: 12px;
+    display: flex;
+    height: 40px;
+    width: 500px;
+    padding: 10px 10px 0px 20px;
+    justify-content: space-between;
+    color: rgb(200, 200, 200);
+    margin-bottom: 10px;
+    border: 2px solid rgb(50,50,50);
+    border-radius: 10px;
+    align-content: center;
+}
+
+    .file-item button {
+        position: relative;
+        top: -5px;
+        left: 5px;
+        font-size: 10px;
+        color: rgb(200,200,200);
+        background-color: rgb(30,30,30);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 20px;
+    }
+
+        .file-item button:hover {
+            background-color: rgb(120,0,0);
+        }
+
+        .file-item button:active {
+            background-color: rgb(90,0,0);
+        }
+
+#preferences-bar {
+    position: relative;
+    top: -250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0; /* Adjust as needed */
+}
+
+.left-line, .right-line {
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid rgb(45, 45, 45); /* Change to your desired line color */
+    margin: 0 10px; /* Adjust spacing between lines and text */
+}
+
+#preferences-text {
+    color: rgb(90, 90, 90); /* Change to your desired text color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+#results-bar {
+    position: relative;
+    top: -280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0; /* Adjust as needed */
+}
+
+.left-result-line, .right-result-line {
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid rgb(45, 45, 45); /* Change to your desired line color */
+    margin: 0 10px; /* Adjust spacing between lines and text */
+}
+
+#results-bar-text {
+    color: rgb(90, 90, 90); /* Change to your desired text color */
+    font-weight: bold; /* Optional: Make the text bold */
+}

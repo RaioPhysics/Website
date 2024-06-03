@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Modules{% endblock %}
+
+{% block content %}
+
+<div class="menu-bar">
+    <button id="winstonBtn" onclick="showSection('winston')">Winston Lutz</button>
+    <button id="starshotsBtn" onclick="showSection('starshots')">Starshots</button>
+    <button id="catphanBtn" onclick="showSection('catphan')">Catphan</button>
+    <button id="picketBtn" onclick="showSection('picket')">Picket Fence</button>
+</div>
+
+<div id="winston" class="content-section">
+    <h2 class="section-title">Winston Lutz</h2>
+    <div id="upload-area" class="upload-area" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        <p>Drag & Drop or <span class="upload-text" onclick="triggerFileInput();">Choose files</span> to upload</p>
+        <p id="supp-text">Supported formats: DCM, TIFF</p>
+        <input type="file" id="fileInput" multiple onchange="fileInputHandler(event);" style="display:none;">
+        <div class="uploadlogo">
+            <img src="{{ url_for('static', filename='logos/upload.png') }}" alt="UploadLogo">
+        </div>
+    </div>
+    <div id="file-list-container">
+        <div id="file-list">
+            <!-- Placeholder for the list of uploaded files -->
+        </div>
+    </div>
+
+    <div id="preferences-bar">
+        <hr class="left-line">
+        <span id="preferences-text">Preferences</span>
+        <hr class="right-line">
+    </div>
+
+    <!-- New input fields and buttons -->
+    <div class="input-group" id="bbsize-text">
+        <label for="BB_size">BB Size (mm)</label>
+        <input type="number" id="BB_size" name="BB_size">
+    </div>
+    <div class="input-group" id="lowdensity-text">
+        <label for="lowdensity">Low Density BB</label>
+        <select id="lowdensity" name="lowdensity">
+            <option value="True">True</option>
+            <option value="False">False</option>
+        </select>
+    </div>
+    <div class="input-group" id="tolerance-text">
+        <label for="tolerance">Tolerance (mm)</label>
+        <input type="number" id="tolerance" name="tolerance">
+        <div id="selected-image">
+            <h2 id="image-title" class="image-title"></h2>
+            <!-- Placeholder for the selected image -->
+        </div>
+    </div>
+    <button class="perform-analysis-button" id="perform-analysis-button" onclick="performAnalysis()">
+        <span class="progress-bar" id="progress-bar"></span>
+        <span class="button-text">Perform Analysis</span>
+    </button>
+    <button id="lock-button" class="lock-button" onclick="toggleLock()">
+        <span id="lock-icon" class="lock-icon">&#x1F513;</span> <!-- Unicode for lock icon -->
+    </button>
+    <div id="results">
+        <!-- Placeholder for the results table -->
+    </div>
+
+    <div id="results-bar">
+        <hr class="left-result-line">
+        <span id="results-bar-text">Results</span>
+        <hr class="right-result-line">
+    </div>
+</div>
+
+<div id="starshots" class="content-section" style="display: none;">
+    <h2 class="section-title">Starshots</h2>
+    <p>This is the Starshots section.</p>
+</div>
+
+<div id="catphan" class="content-section" style="display: none;">
+    <h2 class="section-title">Catphan</h2>
+    <p>This is the Catphan section.</p>
+</div>
+
+<div id="picket" class="content-section" style="display: none;">
+    <h2 class="section-title">Picket Fence</h2>
+    <p>This is the Picket Fence section.</p>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
