@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .home-title {
     position: relative;
     top: 100px;
@@ -14,7 +18,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 body {
@@ -28,7 +32,6 @@ header {
     padding-top: 30px;
     padding-bottom: 10px;
     font-size: 14px;
-    border-bottom: 0.5px solid rgb(100,100,100); /* Add bottom border */
     position: fixed;
     width: 100%;
     height: 30px;
@@ -80,6 +83,7 @@ main {
         cursor: pointer;
         transition: background-color 0.3s; /* Add transition for background color */
         border-radius: 5px; /* Add rounded corners */
+        z-index: 961;
     }
 
         .menu-bar button:hover {
@@ -93,15 +97,19 @@ main {
 
 .content-section {
     position: relative;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
     background-color: rgb(30,30,30);
-    height: 1200px;
-    width: 1262px;
+    height: 100%;
+    width: 100%;
+    min-width: 1200px;
     border-radius: 30px;
     padding-top: 5px; /* Add padding to ensure content is not too close to the edges */
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+    z-index: 960;
 }
 
 .section-title {
@@ -112,7 +120,7 @@ main {
     border: 1.5px dashed rgb(100,100,100);
     padding: 20px;
     position: relative;
-    width: 500px;
+    width: 40%;
     height: 220px;
     display: flex; /* Use flexbox for alignment */
     align-items: center; /* Center vertically */
@@ -157,8 +165,7 @@ main {
 
 #supp-text {
     position: absolute;
-    top: 145px;
-    left: 180px;
+    top: 150px;
     color: rgb(100,100,100); /* Text color */
     font-size: 13px; /* Font size */
     margin-top: 5px; /* Space above the text */
@@ -175,6 +182,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Hide spinners for number inputs in Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 
@@ -222,47 +230,58 @@ input[type="number"] {
             color: rgb(200, 200, 200); /* Text color for dropdown options */
         }
 
+.input-group-container {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.input-group {
+    margin-right: 20px; /* Adjust spacing between elements as needed */
+}
+
 #bbsize-text {
-    position: absolute;
+    position: relative;
     font-size: 14px;
-    left: 30px;
-    top: 420px;
+    left: 2%;
+    top: -230px;
 }
 
 #BB_size {
-    position:absolute;
-    left: 100px;
+    position: absolute;
     top: -8px;
+    left: 105px;
+    height: 30px;
+}
+
+#lowdensity-text {
+    position: relative;
+    font-size: 14px;
+    left: 12%;
+    top: -230px;
+}
+
+#lowdensity {
+    position: absolute;
+    top: -8px;
+    left: 118px;
     height: 30px;
 }
 
 
-#lowdensity-text {
-    position: absolute;
-    font-size: 14px;
-    left: 250px;
-    top: 420px;
-}
-
-    #lowdensity {
-        position: absolute;
-        top: -7px;
-        left: 113px;
-        height: 30px;
-    }
-
-
 #tolerance-text {
-    position: absolute;
+    position: relative;
     font-size: 14px;
-    left: 480px;
-    top: 420px;
+    left: 22%;
+    top: -230px;
 }
 
     #tolerance {
         position: absolute;
-        top: -7px;
-        left: 113px;
+        top: -8px;
+        left: 118px;
         height: 30px;
     }
 
@@ -272,8 +291,8 @@ input[type="number"] {
 
 .perform-analysis-button {
     position: relative;
-    top: -255px;
-    left: 1050px;
+    top: -290px;
+    left: 85%;
     background-color: rgb(70, 130, 180); /* Change this to your desired fill color */
     color: #fff; /* Text color */
     border: none;
@@ -311,6 +330,15 @@ input[type="number"] {
         transition: none;
     }
 
+#results-bar {
+    position: relative;
+    display: flex;
+    top: -280px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0; /* Adjust as needed */
+}
+
 .bb-density-button {
     background-color: rgb(100,100,100);
 }
@@ -318,7 +346,7 @@ input[type="number"] {
 /* General styles for the lock button */
 
 .lock-button {
-    display: inline-block;
+    display: flex;
     width: 25px;
     height: 25px;
     color: white;
@@ -327,12 +355,12 @@ input[type="number"] {
     cursor: pointer;
     font-size: 18px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 20px; /* Adjust margin as needed */
     position: relative;
-    top: -340px;
-    left: 675px;
+    top: -70px;
+    left: 180px;
 }
 
     .lock-button:focus {
@@ -351,13 +379,28 @@ input[type="number"] {
         background-color: rgb(100,100,100);
     }
 
+#results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Styles for the parent container */
+#results {
+    display: flex;
+    justify-content: center;
+}
+
 /* Styles for the results table */
 #results table {
     border-collapse: collapse;
     margin-top: 20px;
-    position: absolute;
-    top: 560px;
-    left: 40px;
+    top: -300px;
+    position: relative;
+    left: 0px;
+    width: 1100px;
+
 }
 
 #results th, #results td {
@@ -394,10 +437,11 @@ input[type="number"] {
 #selected-image {
     margin-top: 20px; /* Adjust as needed */
     text-align: center; /* Center the image horizontally */
-    position: absolute;
     max-width: 500px;
-    top: 130px;
-    left: 280px;
+    position:relative;
+    top: -320px;
+    left:-280px;
+    height: 500px;
 }
 
 /* Style for the image title */
@@ -407,9 +451,7 @@ input[type="number"] {
     font-size: 18px;
     font-weight: bold;
     color: rgb(200,200,200); /* Adjust as needed */
-    position: absolute;
-    top: -40px;
-    left: 200px;
+    position: relative;
 }
 
     #selected-image img {
@@ -439,8 +481,8 @@ input[type="number"] {
     background-color: rgb(30,30,30);
     position: relative;
     top: -262.5px;
-    left: 600px;
-    width: 600px; /* Adjust the width as needed */
+    left: 50%;
+    width: 50%; /* Adjust the width as needed */
     height: 260px; /* Adjust the height as needed */
     overflow-x: hidden;
     overflow-y: auto; /* Enable horizontal scroll only */
@@ -450,12 +492,13 @@ input[type="number"] {
 }
 
 #file-list {
-    z-index: 1000;
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
     height: 50px;
 }
+
+
 
 /* Style the scrollbar */
 #file-list-container::-webkit-scrollbar {
@@ -481,37 +524,63 @@ input[type="number"] {
 .file-item {
     font-size: 12px;
     display: flex;
-    height: 40px;
-    width: 500px;
-    padding: 10px 10px 0px 20px;
+    flex-direction: column;
+    align-items: flex-start; /* Ensure items are aligned at the start */
+    height: 50px;
+    width: 80%;
+    padding: 10px;
     justify-content: space-between;
     color: rgb(200, 200, 200);
     margin-bottom: 10px;
-    border: 2px solid rgb(50,50,50);
+    border: 2px solid rgb(50, 50, 50);
     border-radius: 10px;
-    align-content: center;
+    position: relative;
 }
 
-    .file-item button {
-        position: relative;
-        top: -5px;
-        left: 5px;
-        font-size: 10px;
-        color: rgb(200,200,200);
-        background-color: rgb(30,30,30);
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        height: 20px;
+.file-item-name {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.file-item button {
+    position: absolute;
+    top:10px;
+    right:10px;
+    font-size: 10px;
+    color: rgb(200, 200, 200);
+    background-color: rgb(30, 30, 30);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 20px;
+    margin-left: 10px; /* Ensure there's spacing between filename and button */
+}
+
+    .file-item button:hover {
+        background-color: rgb(120, 0, 0);
     }
 
-        .file-item button:hover {
-            background-color: rgb(120,0,0);
-        }
+    .file-item button:active {
+        background-color: rgb(90, 0, 0);
+    }
 
-        .file-item button:active {
-            background-color: rgb(90,0,0);
-        }
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: rgb(30, 30, 30);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-bar-files {
+    width: 0;
+    height: 100%;
+    background-color: green;
+    transition: width 0.2s ease-in-out;
+}
+
 
 #preferences-bar {
     position: relative;
@@ -534,15 +603,6 @@ input[type="number"] {
     font-weight: bold; /* Optional: Make the text bold */
 }
 
-#results-bar {
-    position: relative;
-    top: -280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0; /* Adjust as needed */
-}
-
 .left-result-line, .right-result-line {
     flex-grow: 1;
     border: none;
@@ -553,4 +613,15 @@ input[type="number"] {
 #results-bar-text {
     color: rgb(90, 90, 90); /* Change to your desired text color */
     font-weight: bold; /* Optional: Make the text bold */
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }

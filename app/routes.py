@@ -1,13 +1,14 @@
-from flask import Blueprint, render_template, request, jsonify, url_for
+from flask import Blueprint, render_template, request, jsonify, url_for, make_response
+#from flask_cachecontrol import cache_for
 from .models import UploadedFile
 from . import db
 import os
 import glob
 import matplotlib
 matplotlib.use('Agg')
-import pydicom
-import numpy as np
-from PIL import Image
+#import pydicom
+#import numpy as np
+#from PIL import Image
 from pylinac import WinstonLutz
 
 main = Blueprint('main', __name__)
@@ -23,16 +24,21 @@ def clear_files():
             try:
                 os.remove(file_path)
             except Exception as e:
-                return jsonify({'error': f'Error deleting file {file_path}: {e}'}), 500
-        return jsonify({'success': True}), 200
+                response = make_response(jsonify({'error': f'Error deleting file {file_path}: {e}'}), 500)
+                response.headers['Content-Type'] = 'application/json; charset=utf-8'
+                return response
+        response = make_response(jsonify({'success': True}), 200)
+        response.headers['Content-Type'] = 'application/json; charset=utf-8'
+        return response
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
+        response = make_response(jsonify({'error': str(e)}), 500)
+        response.headers['Content-Type'] = 'application/json; charset=utf-8'
+        return response
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    #return render_template('index.html')
+    return render_template('modules.html')
 
 @main.route('/page2')
 def page2():
@@ -75,7 +81,6 @@ def upload():
 
     return jsonify({'files': saved_files}), 200
 
-
 @main.route('/remove_file', methods=['POST'])
 def remove_file():
     data = request.get_json()
@@ -95,7 +100,6 @@ def remove_file():
             return jsonify({'error': 'File not found'}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 @main.route('/check_files', methods=['GET'])
 def check_files():
@@ -126,7 +130,6 @@ def analyze():
         else:
             os.makedirs(analyzed_images_dir)
 
-
         wl = WinstonLutz(directory)
         wl.analyze(bb_size_mm=BB_size, low_density_bb=lowdensity)
         results = wl.results_data(as_dict=True)
@@ -136,6 +139,7 @@ def analyze():
         collimator_dict = {}
         table_dict = {}
         caxtobb_dict = {}
+        names_dict = {}
 
         # Tolerance for considering a value as 0 degrees
         tolerance = 1.0
@@ -176,6 +180,9 @@ def analyze():
         
         # Create analyzed images and temporarily save them to static/images/analyzedjpgs directory
         for i in range(len(wl.images)):
+            image_filename = wl.images[i].base_path
+            image_key = f'image{i+1}'
+            names_dict[image_key]=image_filename
             wl.images[i].save_plot(os.path.join(analyzed_images_dir, f'image{i + 1}.png'))
 
 
@@ -185,6 +192,7 @@ def analyze():
             'collimator_dict': collimator_dict,
             'table_dict': table_dict,
             'caxtobb_dict': caxtobb_dict,
+            'names_dict': names_dict,
             'key_mapping': {f'image{i}': key for i, key in enumerate(keyed_image_details.keys(), start=1)}
         })
     except Exception as e:

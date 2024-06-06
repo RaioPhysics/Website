@@ -6,11 +6,11 @@
     "\\app\\static\\css",
     "\\app\\static\\images",
     "\\app\\static\\images\\analyzedpngs",
-    "\\app\\static\\images\\display",
     "\\app\\static\\images\\files_saved_here",
     "\\app\\static\\js",
-    "\\app\\static\\logos"
+    "\\app\\static\\logos",
+    "\\app\\templates"
   ],
-  "SelectedNode": "\\app\\static\\images\\files_saved_here",
+  "SelectedNode": "\\app\\routes.py",
   "PreviewInSolutionExplorer": false
 }
