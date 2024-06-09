@@ -1,20 +1,68 @@
 from flask import Blueprint, render_template, request, jsonify, url_for, make_response
-#from flask_cachecontrol import cache_for
+import requests
 from .models import UploadedFile
+from dotenv import load_dotenv
 from . import db
 import os
 import glob
 import matplotlib
 matplotlib.use('Agg')
-#import pydicom
-#import numpy as np
-#from PIL import Image
 from pylinac import WinstonLutz
 
 main = Blueprint('main', __name__)
 
 UPLOAD_FOLDER = 'app/static/images/files_saved_here'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Store your GitHub token securely (e.g., environment variable)
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
+GITHUB_REPO = 'RaioPhysics/Website'  # Replace with your GitHub username/repo
+
+# Debugging line to ensure the token is loaded correctly
+print(f"Using GitHub Token: {GITHUB_TOKEN}")
+
+@main.route('/submit-issue', methods=['POST'])
+def submit_issue():
+    data = request.json
+    issue_title = data.get('title')
+    issue_body = data.get('body')
+
+    if not issue_title or not issue_body:
+        return jsonify({'error': 'Title and body are required'}), 400
+
+    headers = {
+        'Authorization': f'token {GITHUB_TOKEN}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+    issue_data = {
+        'title': issue_title,
+        'body': issue_body
+    }
+
+    response = requests.post(f'https://api.github.com/repos/{GITHUB_REPO}/issues',
+                             headers=headers, json=issue_data)
+
+    if response.status_code == 201:
+        return jsonify({'message': 'Issue created successfully'}), 201
+    else:
+        return jsonify({'error': 'Failed to create issue'}), response.status_code
+
+@main.route('/get-issues', methods=['GET'])
+def get_issues():
+    headers = {
+        'Authorization': f'token {GITHUB_TOKEN}',
+        'Accept': 'application/vnd.github.v3+json'
+    }
+
+    response = requests.get(f'https://api.github.com/repos/{GITHUB_REPO}/issues', headers=headers)
+
+    if response.status_code == 200:
+        return jsonify(response.json()), 200
+    else:
+        return jsonify({'error': 'Failed to fetch issues'}), response.status_code
 
 # Route to clear the 'files_saved_here' directory
 @main.route('/clear_files', methods=['POST'])

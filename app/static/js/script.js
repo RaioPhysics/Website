@@ -393,3 +393,65 @@ function toggleLock() {
         performAnalysisButton.style.backgroundColor = "";
     }
 }
+
+function openIssueModal() {
+    document.getElementById('issue-modal').style.display = 'block';
+    fetchOpenIssues();
+}
+
+function closeIssueModal() {
+    document.getElementById('issue-modal').style.display = 'none';
+}
+
+function fetchOpenIssues() {
+    fetch('/get-issues', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(`Error: ${data.error}`);
+            } else {
+                displayOpenIssues(data);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function displayOpenIssues(issues) {
+    const openIssuesContainer = document.getElementById('open-issues');
+    openIssuesContainer.innerHTML = '';
+
+    issues.forEach(issue => {
+        const issueItem = document.createElement('div');
+        issueItem.className = 'issue-item';
+        issueItem.innerHTML = `<strong>${issue.title}</strong><p>${issue.body}</p>`;
+        openIssuesContainer.appendChild(issueItem);
+    });
+}
+
+function submitIssue() {
+    const title = document.getElementById('issue-title').value;
+    const body = document.getElementById('issue-body').value;
+
+    fetch('/submit-issue', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, body })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(`Error: ${data.error}`);
+            } else {
+                alert(data.message);
+                closeIssueModal();
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}

@@ -23,5 +23,27 @@
     <main>
         {% block content %}{% endblock %}
     </main>
+    <footer>
+        <button id="submit-issue-button" onclick="openIssueModal()">Submit Issue</button>
+    </footer>
+
+    <!-- Issue Modal -->
+    <div id="issue-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeIssueModal()">&times;</span>
+            <h2>Submit an Issue</h2>
+            <form id="issue-form">
+                <label for="issue-title">Title:</label>
+                <input type="text" id="issue-title" name="title" required><br><br>
+                <label for="issue-body">Description:</label>
+                <textarea id="issue-body" name="body" required></textarea><br><br>
+                <button type="button" onclick="submitIssue()">Submit</button>
+            </form>
+            <h3>Open Issues</h3>
+            <div id="open-issues">
+                <!-- Open issues will be populated here -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
